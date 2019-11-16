@@ -80,9 +80,10 @@ public class Usuario {
 	}
 	
 	public void notificarReservaConcretada(Reserva reserva) {
-		this.sitio.getServidorMail().enviarMail(this.getEmail(), 
+		this.sitio.enviarMail(this.getEmail(), 
 				"Tu reserva se confirmo!", 
-				"El usuario " + reserva.getPublicacion().getPropietario().getNombre() + " acepto tu reserva!");
+				"El usuario " + reserva.obtenerNombrePropietario() + " acepto tu reserva!");
+
 	}
 	
 }

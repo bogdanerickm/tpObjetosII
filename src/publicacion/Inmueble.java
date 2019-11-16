@@ -49,5 +49,9 @@ public class Inmueble {
 		this.propietario = propietario;
 		propietario.agregarInmueble(this);
 	}
+
+	public String obtenerNombrePropietario() {
+		return this.propietario.getNombre();
+	}
 	
 }

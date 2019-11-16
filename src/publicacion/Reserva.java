@@ -46,5 +46,9 @@ public class Reserva {
 		this.estaAceptada = true;
 		this.getInquilino().notificarReservaConcretada(this);
 	}
+
+	public String obtenerNombrePropietario() {
+		return this.publicacion.obtenerNombrePropietario();
+	}
 	
 }

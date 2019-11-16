@@ -16,8 +16,9 @@ public class Ciudad extends Filtro {
 
 	@Override
 	public List<Publicacion> filtrarPublicaciones(List<Publicacion> publicaciones) {
-		publicaciones = publicaciones.stream().filter(publicacion -> publicacion.getInmueble().getCiudad().equals(this.ciudad)).collect(Collectors.toList());
-		return publicaciones;
+		List<Publicacion> copiaPublicaciones = publicaciones;
+		copiaPublicaciones = copiaPublicaciones.stream().filter(publicacion -> publicacion.getInmueble().getCiudad().equals(this.ciudad)).collect(Collectors.toList());
+		return copiaPublicaciones;
 	}
 
 }

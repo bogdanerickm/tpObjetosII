@@ -59,12 +59,16 @@ public class Publicacion {
 	}
 
 	public Boolean puedeReservarseEn(LocalDate checkIn, LocalDate checkOut) {
-		if(this.getReservas().size() > 0) {
+		if(tieneReservas()) {
 			List<Boolean> collect = this.getReservas().stream().filter(reserva -> reserva.estaAceptada()).map(reserva -> this.tieneReservasPara(checkIn, checkOut, reserva)).collect(Collectors.toList());
 			return (!collect.contains(true));
 		} else {
 			return true;
 		}
+	}
+
+	private boolean tieneReservas() {
+		return this.getReservas().size() > 0;
 	}
 
 	private Boolean tieneReservasPara(LocalDate checkIn, LocalDate checkOut, Reserva reserva) {
@@ -74,5 +78,9 @@ public class Publicacion {
 	public Boolean estaDentroDeFecha(LocalDate checkIn, LocalDate checkOut) {
 		return (this.getCheckIn().isBefore(checkIn) || this.getCheckIn().isEqual(checkIn)) && (this.getCheckOut().isAfter(checkOut) || this.getCheckOut().isEqual(checkOut));
 	}
-	
+
+	public String obtenerNombrePropietario() {
+		return this.inmueble.obtenerNombrePropietario();
+	}
+
 }

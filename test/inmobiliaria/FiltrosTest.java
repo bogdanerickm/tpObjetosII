@@ -12,8 +12,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import filtros.FechaInOut;
+import filtros.FiltroAND;
 import filtros.Ciudad;
 import filtros.FiltroCompuesto;
+import filtros.FiltroOR;
 import publicacion.Inmueble;
 import publicacion.Publicacion;
 import sitio.Sitio;
@@ -22,6 +24,7 @@ class FiltrosTest {
 
 	private Sitio sitio;
 	private Ciudad filtroCiudadQuilmes;
+	private Ciudad filtroCiudadBernal;
 	private Ciudad filtroCiudadSarandi;
 	private LocalDate filtroCheckIn;
 	private LocalDate filtroCheckOut;
@@ -50,6 +53,7 @@ class FiltrosTest {
 		filtroCheckOut = LocalDate.of(2019, Month.SEPTEMBER, 30);
 		
 		filtroCiudadQuilmes = new Ciudad("Quilmes");
+		filtroCiudadBernal = new Ciudad("Bernal");
 		filtroCiudadSarandi = new Ciudad("Sarandi");
 		filtroFecha = new FechaInOut(filtroCheckIn, filtroCheckOut);
 		filtroCompuesto1 = new FiltroCompuesto();
@@ -178,5 +182,19 @@ class FiltrosTest {
 		assertFalse(sitio.buscarPublicaciones(filtroCompuesto1).contains(publicacion4));
 		assertFalse(sitio.buscarPublicaciones(filtroCompuesto1).contains(publicacion2));
 		assertFalse(sitio.buscarPublicaciones(filtroCompuesto1).contains(publicacion5));
+	}
+	
+	@Test
+	void testFiltroOrConDosCiudades() {
+		FiltroOR filtroOR = new FiltroOR(filtroCiudadQuilmes, filtroCiudadBernal);
+		this.filtroCompuesto1.agregarFiltro(filtroOR);
+		assertEquals(sitio.buscarPublicaciones(filtroCompuesto1).size(), 4);
+	}
+	
+	@Test
+	void testFiltroAndConUnaCiudadYUnaFecha() {
+		FiltroAND filtroAnd = new FiltroAND(filtroCiudadQuilmes, filtroFecha);
+		this.filtroCompuesto1.agregarFiltro(filtroAnd);
+		assertEquals(sitio.buscarPublicaciones(filtroCompuesto1).size(), 1);
 	}
 }

@@ -74,4 +74,8 @@ public class Sitio {
 	public List<Publicacion> buscarPublicaciones(Filtro filtro) {
 		return filtro.filtrarPublicaciones(this.publicaciones);
 	}
+
+	public void enviarMail(String email, String asunto, String texto) {
+		this.servidorMail.enviarMail(email, asunto, texto);
+	}
 }

@@ -16,14 +16,11 @@ public class FiltroCompuesto extends Filtro {
 	
 	@Override
 	public List<Publicacion> filtrarPublicaciones(List<Publicacion> publicaciones) {
+		List<Publicacion> copiaPublicaciones = publicaciones;
 		for (Filtro unFiltro: filtros) {
-			publicaciones = unFiltro.filtrarPublicaciones(publicaciones);
+			copiaPublicaciones = unFiltro.filtrarPublicaciones(copiaPublicaciones);
 		}
-		return publicaciones;
-	}
-
-	public List<Filtro> getFiltros() {
-		return this.filtros;
+		return copiaPublicaciones;
 	}
 	
 	public void agregarFiltro(Filtro filtro) {
