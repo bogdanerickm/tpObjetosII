@@ -31,6 +31,8 @@ class UsuarioTest {
 		propietario = new Usuario("Marcos", "marcos@hotmail.com", "+541194234125", fechaRegistro, sitio);
 		inmueble = mock(Inmueble.class);
 		reserva = mock(Reserva.class);
+		when(reserva.getNombrePropietario()).thenReturn(propietario.getNombre());
+		when(reserva.getNombreInquilino()).thenReturn(inquilino.getNombre());
 	}
 	
 	@Test
@@ -41,6 +43,7 @@ class UsuarioTest {
 		assertEquals(inquilino.getFechaRegistro(), fechaRegistro);
 		assertEquals(inquilino.getInmuebles().size(), 0);
 		assertEquals(inquilino.getReservas().size(), 0);
+		assertEquals(inquilino.getSitio(), sitio);
 	}
 	
 	@Test
@@ -61,5 +64,16 @@ class UsuarioTest {
 		this.inquilino.agregarReserva(reserva);
 		assertTrue(inquilino.getReservas().contains(reserva));
 	}
+
+	@Test
+	void testAlRealizarReservaSeEnviaMailAlPropietario() {
+		propietario.notificarReservaPendiente(reserva);
+		verify(sitio, times(1)).enviarMail("marcos@hotmail.com", "Tenes una nueva reserva!", "El usuario Ezequiel ha realizado una reserva en tu inmueble");
+	}
 	
+	@Test
+	void testAlAceptarReservaSeEnviaMailAlInquilino() {
+		inquilino.notificarReservaConcretada(reserva);
+		verify(sitio, times(1)).enviarMail("ese@hotmail.com", "Tu reserva se confirmo!", "El usuario Marcos acepto tu reserva!");
+	}
 }

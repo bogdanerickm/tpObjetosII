@@ -38,42 +38,36 @@ class ReservaTest {
 	void testConstructorReserva() {
 		assertEquals(reserva.getPublicacion(), publicacion);
 		assertEquals(reserva.getInquilino(), inquilino); 
+		assertEquals(reserva.getNombreInquilino(), inquilino.getNombre());
 		assertEquals(reserva.getCheckIn(), checkIn);
 		assertEquals(reserva.getCheckOut(), checkOut);
-	}
-	
-	@Test
-	void cuandoUnaReservaSeCreaNoSeEncuentraAceptada() {
+		assertEquals(reserva.getNombrePropietario(), propietario.getNombre());
 		assertFalse(reserva.estaAceptada());
 	}
 	
 	@Test
-	void cuandoUnaReservaSeConfirmaPasaAEstarAceptada() {
+	void testCuandoUnaReservaSeAceptaSeNotificaAlInquilino() {
 		reserva.aceptar();
 		assertTrue(reserva.estaAceptada());
+		verify(inquilino, times(1)).notificarReservaConcretada(reserva);
 	}
 	
 	@Test
-	void cuandoUnaReservaSeCreaSeAgregaALaListaDeReservasDeLaPublicacionCorrespondiente() {
+	void testCuandoUnaReservaSeCreaSeAgregaALaListaDeReservasDeLaPublicacionCorrespondiente() {
 		Reserva nuevaReserva = new Reserva(publicacion, inquilino, checkIn, checkIn);
 		verify(publicacion, times(1)).agregarReserva(nuevaReserva);
 	}
 	
 	@Test
-	void cuandoUnaReservaSeCreaSeAgregaALaListaDeReservasDelInquilinoCorrespondiente() {
+	void testCuandoUnaReservaSeCreaSeAgregaALaListaDeReservasDelInquilinoCorrespondiente() {
 		Reserva nuevaReserva = new Reserva(publicacion, inquilino, checkIn, checkIn);
 		verify(inquilino, times(1)).agregarReserva(nuevaReserva);
 	}
 	
 	@Test
-	void cuandoUnaReservaSeCreaSeNotificaAlPropitarioAlRespecto() {
+	void testCuandoUnaReservaSeCreaSeNotificaAlPropitarioAlRespecto() {
 		Reserva nuevaReserva = new Reserva(publicacion, inquilino, checkIn, checkIn);
 		verify(propietario, times(1)).notificarReservaPendiente(nuevaReserva);
 	}
-	
-	@Test
-	void cuandoUnaReservaSeAceptaSeNotificaAlInquilino() {
-		reserva.aceptar();
-		verify(inquilino, times(1)).notificarReservaConcretada(reserva);
-	}
+
 }

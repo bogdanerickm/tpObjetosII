@@ -2,11 +2,11 @@ package inmobiliaria;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import publicacion.Publicacion;
+import sitio.ServidorMail;
 import sitio.Sitio;
 import usuario.Usuario;
 
@@ -17,19 +17,20 @@ class SitioTest {
 	private Sitio sitio;
 	private Publicacion publicacion;
 	private Usuario usuario;
+	private ServidorMail servidorMail;
 
 	@BeforeEach
 	void setUp() throws Exception {
-		sitio = new Sitio();
+		sitio = new Sitio(servidorMail);
 		publicacion = mock(Publicacion.class);
 		usuario = mock(Usuario.class);
 	}
-	
-	@AfterEach
-	void afterEach() {
-		this.sitio.vaciarListaPublicaciones();
-	}
 
+	@Test
+	void testSitioConServidorMail() {
+		assertEquals(sitio.getServidorMail(), servidorMail);
+	}
+	
 	@Test
 	void testCreoUnUsuarioYLoRegistroEnElSitio() {
 		sitio.registrarUsuario(usuario);

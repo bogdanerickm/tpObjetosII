@@ -48,10 +48,6 @@ public class Sitio {
 		this.publicaciones.remove(publicacion);
 	}
 	
-	public void vaciarListaPublicaciones() {
-		this.publicaciones.clear();
-	}
-	
 	public ServidorMail getServidorMail() {
 		return this.servidorMail;
 	}	
@@ -76,6 +72,6 @@ public class Sitio {
 	}
 
 	public void enviarMail(String email, String asunto, String texto) {
-		this.servidorMail.enviarMail(email, asunto, texto);
+		this.getServidorMail().enviarMail(email, asunto, texto);
 	}
 }

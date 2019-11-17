@@ -85,6 +85,7 @@ class PublicacionTest {
 		assertEquals(publicacion.getPrecio(), 10000d);
 		when(inmueble.getPropietario()).thenReturn(propietario);
 		assertEquals(publicacion.getPropietario(), propietario);
+		assertEquals(publicacion.getNombrePropietario(), propietario.getNombre());
 	}
 	
 	@Test
@@ -104,6 +105,8 @@ class PublicacionTest {
 	@Test
 	void testQueVerificaQueLasFechasIngresadasEstanDentroDeLaPublicacion() {
 		assertTrue(publicacion.estaDentroDeFecha(checkInReserva1, checkOutReserva1));
+		assertTrue(publicacion.estaDentroDeFecha(checkInReserva2, checkOutReserva2));
+		assertTrue(publicacion.estaDentroDeFecha(checkInReserva3, checkOutReserva3));
 		assertFalse(publicacion.estaDentroDeFecha(checkInReserva4, checkOutReserva4));
 	}
 	

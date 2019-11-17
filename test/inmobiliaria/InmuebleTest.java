@@ -43,6 +43,8 @@ class InmuebleTest {
 		assertEquals(inmueble1.getDireccion().getCalle(), "Rivadavia");
 		assertEquals(inmueble1.getDireccion().getNumeracion(), 1212);
 		assertEquals(inmueble1.getServicios().size(), 0);
+		inmueble1.setPropietario(propietario);
+		assertEquals(inmueble1.getNombrePropietario(), "Kevin");
 	}
 	
 	@Test

@@ -57,6 +57,10 @@ public class Publicacion {
 	public Usuario getPropietario() {
 		return this.getInmueble().getPropietario();
 	}
+	
+	public String getNombrePropietario() {
+		return this.inmueble.getNombrePropietario();
+	}
 
 	public Boolean puedeReservarseEn(LocalDate checkIn, LocalDate checkOut) {
 		if(tieneReservas()) {
@@ -77,10 +81,6 @@ public class Publicacion {
 
 	public Boolean estaDentroDeFecha(LocalDate checkIn, LocalDate checkOut) {
 		return (this.getCheckIn().isBefore(checkIn) || this.getCheckIn().isEqual(checkIn)) && (this.getCheckOut().isAfter(checkOut) || this.getCheckOut().isEqual(checkOut));
-	}
-
-	public String obtenerNombrePropietario() {
-		return this.inmueble.obtenerNombrePropietario();
 	}
 
 }

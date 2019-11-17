@@ -17,17 +17,29 @@ public class Reserva {
 		this.inquilino = inquilino;
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
-		this.getPublicacion().agregarReserva(this);
-		this.getInquilino().agregarReserva(this);
-		this.getPublicacion().getPropietario().notificarReservaPendiente(this);
+		this.agregarReservaEnInvolucrados();
+		this.notificarNuevaReserva();
+		
 	}
 
 	public Publicacion getPublicacion() {
 		return this.publicacion;
 	}
-
+	
+	public Usuario getPropietario() {
+		return this.publicacion.getPropietario();
+	}
+	
+	public String getNombrePropietario() {
+		return this.publicacion.getNombrePropietario();
+	}
+	
 	public Usuario getInquilino() {
 		return this.inquilino;
+	}
+	
+	public String getNombreInquilino() {
+		return this.inquilino.getNombre();
 	}
 
 	public LocalDate getCheckIn() {
@@ -46,9 +58,13 @@ public class Reserva {
 		this.estaAceptada = true;
 		this.getInquilino().notificarReservaConcretada(this);
 	}
-
-	public String obtenerNombrePropietario() {
-		return this.publicacion.obtenerNombrePropietario();
+	
+	private void agregarReservaEnInvolucrados() {
+		this.getPublicacion().agregarReserva(this);
+		this.getInquilino().agregarReserva(this);
 	}
 	
+	private void notificarNuevaReserva() {
+		this.getPropietario().notificarReservaPendiente(this);
+	}
 }

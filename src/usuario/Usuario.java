@@ -73,17 +73,17 @@ public class Usuario {
 	}
 	
 	public void notificarReservaPendiente(Reserva reserva) {
-		this.sitio.getServidorMail().enviarMail(this.getEmail(), 
+		this.sitio.enviarMail(this.getEmail(), 
 				"Tenes una nueva reserva!", 
-				"El usuario " + reserva.getInquilino().getNombre() + 
+				"El usuario " + reserva.getNombreInquilino() + 
 				" ha realizado una reserva en tu inmueble");
 	}
 	
 	public void notificarReservaConcretada(Reserva reserva) {
 		this.sitio.enviarMail(this.getEmail(), 
 				"Tu reserva se confirmo!", 
-				"El usuario " + reserva.obtenerNombrePropietario() + " acepto tu reserva!");
-
+				"El usuario " + reserva.getNombrePropietario() + 
+				" acepto tu reserva!");
 	}
 	
 }
