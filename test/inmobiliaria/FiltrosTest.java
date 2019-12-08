@@ -16,7 +16,6 @@ import filtros.FiltroAND;
 import filtros.Ciudad;
 import filtros.FiltroCompuesto;
 import filtros.FiltroOR;
-import publicacion.Inmueble;
 import publicacion.Publicacion;
 import sitio.Sitio;
 
@@ -37,11 +36,6 @@ class FiltrosTest {
 	private Publicacion publicacion3;
 	private Publicacion publicacion4;
 	private Publicacion publicacion5;
-	private Inmueble inmueble1;
-	private Inmueble inmueble2;
-	private Inmueble inmueble3;
-	private Inmueble inmueble4;
-	private Inmueble inmueble5;
 	private List<Publicacion> publicacionesFiltradas;
 
 	@BeforeEach
@@ -66,26 +60,12 @@ class FiltrosTest {
 		publicacion4 = mock(Publicacion.class);
 		publicacion5 = mock(Publicacion.class);
 		
-		inmueble1 = mock(Inmueble.class);
-		inmueble2 = mock(Inmueble.class);
-		inmueble3 = mock(Inmueble.class);
-		inmueble4 = mock(Inmueble.class);
-		inmueble5 = mock(Inmueble.class);
-		
-		when(publicacion1.getInmueble()).thenReturn(inmueble1);
-		when(inmueble1.getCiudad()).thenReturn("Quilmes");		// coincide
-		
-		when(publicacion2.getInmueble()).thenReturn(inmueble2);
-		when(inmueble2.getCiudad()).thenReturn("Berazategui");
-		
-		when(publicacion3.getInmueble()).thenReturn(inmueble3);
-		when(inmueble3.getCiudad()).thenReturn("Quilmes");		// coincide
-		
-		when(publicacion4.getInmueble()).thenReturn(inmueble4);
-		when(inmueble4.getCiudad()).thenReturn("Quilmes");		// coincide
-		
-		when(publicacion5.getInmueble()).thenReturn(inmueble5);
-		when(inmueble5.getCiudad()).thenReturn("Bernal");		
+
+		when(publicacion1.getCiudad()).thenReturn("Quilmes");		// coincide
+		when(publicacion2.getCiudad()).thenReturn("Berazategui");
+		when(publicacion3.getCiudad()).thenReturn("Quilmes");		// coincide
+		when(publicacion4.getCiudad()).thenReturn("Quilmes");		// coincide
+		when(publicacion5.getCiudad()).thenReturn("Bernal");		
 
 		
 		when(publicacion1.puedeReservarseEn(filtroCheckIn, filtroCheckOut)).thenReturn(true);

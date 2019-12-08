@@ -28,6 +28,10 @@ public class Publicacion {
 	public Inmueble getInmueble() {
 		return this.inmueble;
 	}
+	
+	public String getCiudad() {
+		return this.getInmueble().getCiudad();
+	}
 
 	public int getCapacidad() {
 		return this.capacidad;

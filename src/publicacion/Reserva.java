@@ -56,11 +56,6 @@ public class Reserva {
 		this.getInquilino().notificarReservaConcretada(this);
 	}
 	
-	public void agregarReservaEnInvolucrados() {
-		this.getPublicacion().agregarReserva(this);
-		this.getInquilino().agregarReserva(this);
-	}
-	
 	public void notificarNuevaReserva() {
 		this.getPropietario().notificarReservaPendiente(this);
 	}

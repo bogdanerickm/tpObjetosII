@@ -55,14 +55,14 @@ class ReservaTest {
 	@Test
 	void testCuandoUnaReservaSeCreaSeAgregaALaListaDeReservasDeLaPublicacionCorrespondiente() {
 		Reserva nuevaReserva = new Reserva(publicacion, inquilino, checkIn, checkIn);
-		nuevaReserva.agregarReservaEnInvolucrados();
+		nuevaReserva.getPublicacion().agregarReserva(nuevaReserva);
 		verify(publicacion, times(1)).agregarReserva(nuevaReserva);
 	}
 	
 	@Test
 	void testCuandoUnaReservaSeCreaSeAgregaALaListaDeReservasDelInquilinoCorrespondiente() {
 		Reserva nuevaReserva = new Reserva(publicacion, inquilino, checkIn, checkIn);
-		nuevaReserva.agregarReservaEnInvolucrados();
+		nuevaReserva.getInquilino().agregarReserva(nuevaReserva);
 		verify(inquilino, times(1)).agregarReserva(nuevaReserva);
 	}
 	
