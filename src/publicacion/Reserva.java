@@ -17,9 +17,6 @@ public class Reserva {
 		this.inquilino = inquilino;
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
-		this.agregarReservaEnInvolucrados();
-		this.notificarNuevaReserva();
-		
 	}
 
 	public Publicacion getPublicacion() {
@@ -59,12 +56,12 @@ public class Reserva {
 		this.getInquilino().notificarReservaConcretada(this);
 	}
 	
-	private void agregarReservaEnInvolucrados() {
+	public void agregarReservaEnInvolucrados() {
 		this.getPublicacion().agregarReserva(this);
 		this.getInquilino().agregarReserva(this);
 	}
 	
-	private void notificarNuevaReserva() {
+	public void notificarNuevaReserva() {
 		this.getPropietario().notificarReservaPendiente(this);
 	}
 }

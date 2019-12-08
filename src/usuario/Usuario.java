@@ -63,11 +63,9 @@ public class Usuario {
 	public void agregarInmueble(Inmueble inmueble) {
 		if (!this.getInmuebles().contains(inmueble)) {
 			this.inmuebles.add(inmueble);
-		} else {
-			return;
 		}
 	}
-
+		
 	public Sitio getSitio() {
 		return this.sitio;
 	}

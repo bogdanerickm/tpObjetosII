@@ -30,8 +30,8 @@ class InmuebleTest {
 		propietario = new Usuario("Kevin", "kevindlp@gmail.com", "+540112223341", LocalDate.of(2019, Month.APRIL, 2), sitio);
 		direccion = new Direccion("Rivadavia", 1212);
 		servicios = new ArrayList<String>();
-		inmueble1 = new Inmueble("Casa", "Argentina", "Quilmes", direccion, servicios);
-		inmueble2 = new Inmueble("Departamento", "Peru", "Quito", direccion, servicios);
+		inmueble1 = new Inmueble("Casa", "Argentina", "Quilmes", direccion, servicios, propietario);
+		inmueble2 = new Inmueble("Departamento", "Peru", "Quito", direccion, servicios, propietario);
 	}
 	
 	@Test
@@ -43,14 +43,13 @@ class InmuebleTest {
 		assertEquals(inmueble1.getDireccion().getCalle(), "Rivadavia");
 		assertEquals(inmueble1.getDireccion().getNumeracion(), 1212);
 		assertEquals(inmueble1.getServicios().size(), 0);
-		inmueble1.setPropietario(propietario);
 		assertEquals(inmueble1.getNombrePropietario(), "Kevin");
 	}
 	
 	@Test
 	void testAgregoInmuebleAlPropietario() {
-		inmueble1.setPropietario(propietario);
-		inmueble2.setPropietario(propietario);
+		propietario.agregarInmueble(inmueble1);
+		propietario.agregarInmueble(inmueble2);
 		assertEquals(inmueble1.getPropietario(), propietario);
 		assertEquals(inmueble2.getPropietario(), propietario);
 		assertEquals(propietario.getInmuebles().size(), 2);

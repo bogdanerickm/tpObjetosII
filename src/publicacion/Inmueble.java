@@ -13,12 +13,13 @@ public class Inmueble {
 	private String tipoInmueble;
 	private Usuario propietario;
 	
-	public Inmueble(String tipoInmueble, String pais, String ciudad, Direccion direccion, List<String> servicios) {
+	public Inmueble(String tipoInmueble, String pais, String ciudad, Direccion direccion, List<String> servicios, Usuario propietario) {
 		this.tipoInmueble = tipoInmueble;
 		this.pais = pais;
 		this.ciudad = ciudad;
 		this.direccion = direccion;
 		this.servicios = servicios;
+		this.propietario = propietario;
 	}
 	
 	public String getPais() {
@@ -40,11 +41,6 @@ public class Inmueble {
 	public String getTipoInmueble() {
 		return this.tipoInmueble;
 	}
-	
-	public void setPropietario(Usuario propietario) {
-		this.propietario = propietario;
-		propietario.agregarInmueble(this);
-	}
 
 	public Usuario getPropietario() {
 		return this.propietario;
@@ -53,5 +49,4 @@ public class Inmueble {
 	public String getNombrePropietario() {
 		return this.propietario.getNombre();
 	}
-	
 }
